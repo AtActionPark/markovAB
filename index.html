@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>postgenerator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script  src="js/script.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="command">
+        <button id="generate">Generate</button>
+        <input type="file" id="fileinput" /> 
+        <form id="radioOrder">Order
+          <input type="radio" name="order" value="1" >  1
+          <input type="radio" name="order" value="2" checked> 2 
+        </form>
+        Min words <input id="minWords" type="number" name="minWords" min="1" value = "20">
+        <br>
+      </div>
+      <img src="images/untitled.png" >
+      <div id="generated_title"></div>
+      
+      <footer>See code on <a href="http://github.com/AtActionPark/odin_missile_command">Github</a></footer>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+/* Reset */
+html, body, div, h1, canvas {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.container{
+  margin:50px;
+}
+
+button,form{
+	margin-right: 50px;
+	display: inline-block;
+}
+
+#fileinput{
+	display: none;
+}
+#minWords{
+	width: 50px;
+}
+
+#generated_title{
+	width:800px;
+	display: inline-block;
+	margin-top: 20px;
+}
+.command{
+	border: 1px solid black;
+	padding: 20px;
+	width: 500px;
+}
+
+img{
+	margin-top: 20px;
+	display:inline-block;
+}
+
+footer{
+  text-align: center;
+  position: fixed;
+  bottom: 0px;
+}
+

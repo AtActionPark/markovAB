@@ -4,7 +4,7 @@ var endWords = {};
 var startWords = [];
 var order = 2;
 var min_words =20;
-
+var image = 'images/Untitled.png';
 
 function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
@@ -131,6 +131,9 @@ $(document).ready(function(){
     document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
     var title = make_post(min_words);
         $("#generated_title").html(title);
+
+    $('#fred').attr('src', image);
+
     $("#generate").on('click', function () {
         var title = make_post(min_words);
         $("#generated_title").html(title);

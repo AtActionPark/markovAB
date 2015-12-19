@@ -13,13 +13,16 @@
     <div class="container">
       <div class="command">
         <button id="generate">Generate</button>
-        <input type="file" id="fileinput" /> 
+        
         <form id="radioOrder">Order
           <input type="radio" name="order" value="1" >  1
           <input type="radio" name="order" value="2" checked> 2 
         </form>
         Min words <input id="minWords" type="number" name="minWords" min="1" value = "20">
         <br>
+        <br>
+        Change source (.txt)
+        <input type="file" id="fileinput" value="change source" />
       </div>
       <img id="fred"  >
       <div id="generated_title"></div>

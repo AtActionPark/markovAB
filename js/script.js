@@ -7,7 +7,6 @@ var min_words =20;
 var image = 'images/Untitled.png';
 
 function readSingleFile(evt) {
-    //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
 
     if (f) {
@@ -16,6 +15,7 @@ function readSingleFile(evt) {
           var contents = e.target.result;
           corpus = contents;
           corpus = corpus.replace(/\s+/g, ' ').trim();
+          dict = {};
           createDict();
       }
       r.readAsText(f, 'ISO-8859-1');

@@ -542,6 +542,7 @@ make_post(min_words)
 
 var getTxt = function(){
     var request = new XMLHttpRequest();
+    request.setCharacterEncoding("UTF-8");
     request.open("GET", "test.txt", false);
     request.send(null);
     console.log(request.responseText);

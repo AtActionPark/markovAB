@@ -6,6 +6,7 @@ var order = 2;
 var min_words =20;
 var image = 'images/Untitled.png';
 
+//gets a file from user and create dictionnary
 function readSingleFile(evt) {
     var f = evt.target.files[0]; 
 
@@ -24,6 +25,15 @@ function readSingleFile(evt) {
     }
 }
 
+var choice = function (a) {
+    var i = Math.floor(a.length * Math.random());
+    return a[i];
+}
+
+//create dictionnary from the text
+//For each word, keep track of the possible following words
+// order 2 do the same for each serie of 2 words 
+// keep a record of words at start and end of sentences
 var createDict = function(){
     if (order == 1)
         createDict1()
@@ -31,18 +41,21 @@ var createDict = function(){
         createDict2()
 }
 
+
 var createDict2 = function(){
 
     var words = corpus.split(' ');
     for (var i = 0; i < words.length - 2; i++) {
+        // endwords finish with . ? ! or )
         if (words[i].charAt([words[i].length-1]) == '.' || words[i].charAt([words[i].length-1]) == '?'|| words[i].charAt([words[i].length-1]) == '!'|| words[i].charAt([words[i].length-1]) == ')'){
             endWords[words[i]] = true;
             startWords.push([words[i+1],words[i+2]]);
         }
-
+        // if key already in dict, add a new possible value
         if ( words[i] in dict && words[i+1] in dict[words[i]] ) {
             dict[words[i]][words[i+1]].push(words[i+2])
         } 
+        // else create new key-value
         else {
             if (dict[words[i]]== undefined){
              dict[words[i]] ={}
@@ -57,14 +70,16 @@ var createDict2 = function(){
 var createDict1 = function(){
     var words = corpus.split(' ');
     for (var i = 0; i < words.length - 1; i++) {
+        // endwords finish with . ? ! or )
         if (words[i].charAt([words[i].length-1]) == '.' || words[i].charAt([words[i].length-1]) == '?'|| words[i].charAt([words[i].length-1]) == '!'|| words[i].charAt([words[i].length-1]) == ')'){
             endWords[words[i]] = true;
             startWords.push(words[i+1]);
         }
-
+        // if key already in dict, add a new possible value
         if ( words[i] in dict) {
             dict[words[i]].push(words[i+1])
         } 
+        // else create new key-value
         else {
             dict[words[i]] = [words[i+1]]
         }    
@@ -73,12 +88,15 @@ var createDict1 = function(){
     console.log(endWords);  
 }
 
-var choice = function (a) {
-    var i = Math.floor(a.length * Math.random());
-    return a[i];
+
+//Pick a random starting word, look into dictionnary for possible next word
+// stops when post length > min length and last word is a endword
+var make_post = function(min_length){
+    if (order == 1)
+        return make_post_order1(min_length);
+    else 
+        return make_post_order2(min_length);
 }
-
-
 
 var make_post_order2 = function (min_length) {
     var w = choice(startWords);
@@ -115,14 +133,6 @@ var make_post_order1 = function (min_length) {
     }
     if (phrase.length < min_length) return make_post(min_length);
     return phrase.join(' ');
-}
-
-
-var make_post = function(min_length){
-    if (order == 1)
-        return make_post_order1(min_length);
-    else 
-        return make_post_order2(min_length);
 }
 
 
@@ -526,3 +536,18 @@ Non mais c'est clair et ce n'est pas dramatique en soi (bien que quand on me dem
 corpus = corpus.replace(/\s+/g, ' ');
 createDict();
 make_post(min_words)
+
+
+
+
+var getTxt = function(){
+    var request = new XMLHttpRequest();
+    request.open("GET", "test.txt", false);
+    request.send(null);
+    console.log(request.responseText);
+
+    corpus = request.responseText;
+    corpus = corpus.replace(/\s+/g, ' ');
+    createDict();
+    make_post(min_words);
+}

@@ -544,6 +544,7 @@ var getTxt = function(){
     var request = new XMLHttpRequest();
     request.setCharacterEncoding("UTF-8");
     request.open("GET", "test.txt", false);
+    request.overrideMimeType('text/xml; charset=iso-8859-1');
     request.send(null);
     console.log(request.responseText);
 
